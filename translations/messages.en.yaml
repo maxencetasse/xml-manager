@@ -1,0 +1,7 @@
+menu:
+  link:
+    home: 'Home'
+  connection:
+    button:
+      login: 'Login'
+      signup: 'Sign-up'

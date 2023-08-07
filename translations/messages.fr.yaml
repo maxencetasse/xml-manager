@@ -1,0 +1,7 @@
+menu:
+  link:
+    home: 'Accueil'
+  connection:
+    button:
+      login: 'Se connecter'
+      signup: "S'inscrire"
