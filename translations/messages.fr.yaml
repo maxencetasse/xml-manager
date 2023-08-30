@@ -6,3 +6,5 @@ menu:
       login: 'Se connecter'
       signup: "S'inscrire"
       logout: 'Deconnexion'
+  navbar:
+    hello: 'Hello'
