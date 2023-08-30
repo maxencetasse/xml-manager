@@ -5,3 +5,4 @@ menu:
     button:
       login: 'Se connecter'
       signup: "S'inscrire"
+      logout: 'Deconnexion'

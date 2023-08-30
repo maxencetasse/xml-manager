@@ -74,6 +74,7 @@ class RegistrationFormType extends AbstractType
             ->add('lastName', TextType::class, [
                 'constraints' => [
                     new NotBlank([
+                        
                         'message' => 'Please enter your last name',
                     ])
                 ],
