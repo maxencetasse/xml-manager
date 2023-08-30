@@ -32,7 +32,7 @@
                     <div class="d-flex flex-row">
                         {% if is_granted('ROLE_USER') %}
                             <div>
-                                <p class="me-3">{{ app.user.email }}</p>
+                                <p class="me-3 fw-bold">{{ app.user.email }}</p>
                             </div>
                             <a class="nav-link" href="{{ path('app_logout') }}">
                                 <button type="button" class="btn btn-primary">{{ 'menu.connection.button.logout'|trans }}</button>
