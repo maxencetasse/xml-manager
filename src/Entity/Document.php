@@ -22,16 +22,11 @@ class Document
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $addDate = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'documents')]
-    private Collection $users;
-
     #[ORM\Column(length: 255)]
     private ?string $baseName = null;
 
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'documents')]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -62,30 +57,6 @@ class Document
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUser(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): static
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): static
-    {
-        $this->users->removeElement($user);
-
-        return $this;
-    }
-
     public function getBaseName(): ?string
     {
         return $this->baseName;
@@ -94,6 +65,18 @@ class Document
     public function setBaseName(string $baseName): static
     {
         $this->baseName = $baseName;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

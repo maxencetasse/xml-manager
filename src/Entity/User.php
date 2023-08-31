@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\ManyToMany(targetEntity: Document::class, mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Document::class)]
     private Collection $documents;
 
     public function __construct()
@@ -167,7 +167,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->documents->contains($document)) {
             $this->documents->add($document);
-            $document->addUser($this);
+            $document->setUser($this);
         }
 
         return $this;
@@ -176,7 +176,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeDocument(Document $document): static
     {
         if ($this->documents->removeElement($document)) {
-            $document->removeUser($this);
+            // set the owning side to null (unless already changed)
+            if ($document->getUser() === $this) {
+                $document->setUser(null);
+            }
         }
 
         return $this;
