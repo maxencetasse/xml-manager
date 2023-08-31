@@ -5,3 +5,6 @@ menu:
     button:
       login: 'Login'
       signup: 'Sign-up'
+      logout: 'Logout'
+  navbar:
+    hello: 'Hello'
