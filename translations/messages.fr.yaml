@@ -1,6 +1,7 @@
 menu:
   link:
     home: 'Accueil'
+    document: 'Document'
   connection:
     button:
       login: 'Se connecter'
