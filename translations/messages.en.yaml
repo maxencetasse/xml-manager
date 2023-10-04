@@ -1,7 +1,8 @@
 menu:
   link:
     home: 'Home'
-    document: 'Document'
+    document: 'Documents'
+    user: 'Users'
   connection:
     button:
       login: 'Login'

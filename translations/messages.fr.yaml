@@ -2,6 +2,7 @@ menu:
   link:
     home: 'Accueil'
     document: 'Document'
+    user: 'Utilisateurs'
   connection:
     button:
       login: 'Se connecter'
