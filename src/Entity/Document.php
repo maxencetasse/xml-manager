@@ -26,6 +26,7 @@ class Document
     private ?string $baseName = null;
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
+    #[ORM\JoinColumn()]
     private ?User $user = null;
 
     public function getId(): ?int
