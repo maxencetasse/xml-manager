@@ -4,6 +4,10 @@
 
 @import "~bootstrap/scss/bootstrap";
 
+/*bootstrap-icons*/
+//$bootstrap-icons-font-dir: "~bootstrap-icons/font/fonts";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
