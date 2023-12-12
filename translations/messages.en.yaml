@@ -3,6 +3,7 @@ menu:
     home: 'Home'
     document: 'Documents'
     user: 'Users'
+    role: 'Roles'
   connection:
     button:
       login: 'Login'
