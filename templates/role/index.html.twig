@@ -3,7 +3,13 @@
 {% block title %}Role index{% endblock %}
 
 {% block body %}
-    <h1>Role index</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Role index</h1>
+        <div>
+            <a class="btn btn-primary" role="button" href="{{ path('app_role_new') }}"><i class="bi bi-plus m-1"></i>New</a>
+        </div>
+
+    </div>
 
     <table class="table">
         <thead>
@@ -19,8 +25,8 @@
                 <td>{{ role.id }}</td>
                 <td>{{ role.name }}</td>
                 <td>
-                    <a class="btn btn-info" role="button" href="{{ path('app_role_show', {'id': role.id}) }}"><i class="bi bi-info-circle m-1"></i>show</a>
-                    <a class="btn btn-primary" role="button" href="{{ path('app_role_edit', {'id': role.id}) }}"><i class="bi bi-pencil-square m-1"></i>edit</a>
+                    <a class="btn btn-info" role="button" href="{{ path('app_role_show', {'id': role.id}) }}"><i class="bi bi-info-circle m-1"></i>Show</a>
+                    <a class="btn btn-primary" role="button" href="{{ path('app_role_edit', {'id': role.id}) }}"><i class="bi bi-pencil-square m-1"></i>Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +37,5 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" role="button" href="{{ path('app_role_new') }}">Create new</a>
+
 {% endblock %}
