@@ -18,9 +18,11 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" role="button" href="{{ path('app_role_index') }}">back to list</a>
+    <div class="d-flex justify-content-end gap-1">
+        <a class="btn btn-primary" role="button" href="{{ path('app_role_index') }}">Back to list</a>
 
-    <a class="btn btn-primary" role="button" href="{{ path('app_role_edit', {'id': role.id}) }}">edit</a>
+        <a class="btn btn-primary" role="button" href="{{ path('app_role_edit', {'id': role.id}) }}">Edit</a>
 
-    {{ include('role/_delete_form.html.twig') }}
+        {{ include('role/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
