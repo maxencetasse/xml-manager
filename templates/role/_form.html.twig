@@ -1,7 +1,9 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <div class="d-flex justify-content-end gap-1">
+    <div class="d-flex justify-content-end gap-1 m-1">
         <button class="btn btn-primary"><i class="bi bi-pencil-square m-1"></i>{{ button_label|default('Save') }}</button>
-        {{ include('role/_delete_form.html.twig') }}
+        {% if role.id is not null %}
+            {{ include('role/_delete_form.html.twig') }}
+        {% endif %}
     </div>
 {{ form_end(form) }}
