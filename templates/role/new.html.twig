@@ -4,8 +4,6 @@
 
 {% block body %}
     <h1>Create new Role</h1>
-
+    <a class="btn btn-primary" role="button" href="{{ path('app_role_index') }}"><i class="bi bi-arrow-return-left m-1"></i>Back to list</a>
     {{ include('role/_form.html.twig') }}
-
-    <a class="btn btn-primary" role="button" href="{{ path('app_role_index') }}">back to list</a>
 {% endblock %}
