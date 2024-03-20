@@ -4,8 +4,6 @@
 
 {% block body %}
     <h2>Create new User</h2>
-
+    <a class="btn btn-primary" href="{{ path('app_user_index') }}"><i class="bi bi-arrow-return-left m-1"></i>Back to list</a>
     {{ include('user/_form.html.twig') }}
-
-    <a class="btn btn-primary" href="{{ path('app_user_index') }}">back to list</a>
 {% endblock %}
