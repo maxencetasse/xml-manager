@@ -3,19 +3,51 @@
 namespace App\Form;
 
 use App\Entity\Document;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class DocumentType extends AbstractType
 {
+    private Security $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
-            ->add('addDate')
+            ->add('addDate', DateTimeType::class, [
+                'data' => new \DateTime(),
+                'disabled' => true,
+                'date_widget' => 'single_text',
+            ])
             ->add('baseName')
-            ->add('user')
+            ->add('user', HiddenType::class, [
+                'data' => $this->security->getUser()->getUserIdentifier(),
+            ])
+            ->add('file', FileType::class, [
+                'label' => 'Document (XML file)',
+                'mapped' => false,
+                'required' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024M',
+                        'mimeTypes' => [
+                            'application/xml',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid XML document',
+                    ])
+                ],
+            ])
         ;
     }
 
