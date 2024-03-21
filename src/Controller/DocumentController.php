@@ -30,6 +30,8 @@ class DocumentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $document->setUser($this->getUser());
+            $document->setAddDate(new \DateTime());
             $entityManager->persist($document);
             $entityManager->flush();
 

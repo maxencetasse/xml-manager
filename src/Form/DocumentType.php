@@ -14,26 +14,11 @@ use Symfony\Component\Validator\Constraints\File;
 
 class DocumentType extends AbstractType
 {
-    private Security $security;
-
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
-            ->add('addDate', DateTimeType::class, [
-                'data' => new \DateTime(),
-                'disabled' => true,
-                'date_widget' => 'single_text',
-            ])
             ->add('baseName')
-            ->add('user', HiddenType::class, [
-                'data' => $this->security->getUser()->getUserIdentifier(),
-            ])
             ->add('file', FileType::class, [
                 'label' => 'Document (XML file)',
                 'mapped' => false,
@@ -45,6 +30,9 @@ class DocumentType extends AbstractType
                             'application/xml',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid XML document',
+                        'extensions' => [
+                            'xml',
+                        ],
                     ])
                 ],
             ])
