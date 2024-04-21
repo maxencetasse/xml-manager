@@ -25,6 +25,7 @@ class DocumentType extends AbstractType
                         'maxSize' => '1024M',
                         'mimeTypes' => [
                             'application/xml',
+                            'text/xml',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid XML document',
                         'extensions' => [
