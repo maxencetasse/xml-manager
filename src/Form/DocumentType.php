@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Document;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class DocumentType extends AbstractType
 {
@@ -13,9 +15,24 @@ class DocumentType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('addDate')
-            ->add('baseName')
-            ->add('user')
+            ->add('file', FileType::class, [
+                'label' => 'Document (XML file)',
+                'mapped' => false,
+                'required' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024M',
+                        'mimeTypes' => [
+                            'application/xml',
+                            'text/xml',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid XML document',
+                        'extensions' => [
+                            'xml',
+                        ],
+                    ])
+                ],
+            ])
         ;
     }
 
