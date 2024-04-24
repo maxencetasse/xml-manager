@@ -7,6 +7,7 @@ use App\Form\DocumentType;
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +26,8 @@ class DocumentController extends AbstractController
     }
 
     #[Route('/new', name: 'app_document_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger,
+                        Filesystem $filesystem): Response
     {
         $document = new Document();
         $form = $this->createForm(DocumentType::class, $document);
@@ -40,6 +42,9 @@ class DocumentController extends AbstractController
 
             try
             {
+                if(!$filesystem->exists($this->getParameter('document_directory')))
+                    $filesystem->mkdir($this->getParameter('document_directory'));
+
                 $file->move(
                     $this->getParameter('document_directory'),
                     $newFilename
@@ -50,6 +55,8 @@ class DocumentController extends AbstractController
                 throw new \Exception('An error occurred while uploading the file');
             }
 
+            $document->setBaseName($originalFilename);
+            $document->setName($newFilename);
             $document->setUser($this->getUser());
             $document->setAddDate(new \DateTime());
             $entityManager->persist($document);

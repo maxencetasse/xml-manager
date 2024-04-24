@@ -15,7 +15,6 @@ class DocumentType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('baseName')
             ->add('file', FileType::class, [
                 'label' => 'Document (XML file)',
                 'mapped' => false,
