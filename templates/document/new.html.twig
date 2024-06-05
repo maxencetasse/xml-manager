@@ -4,8 +4,6 @@
 
 {% block body %}
     <h1>Create new Document</h1>
-
+    <a class="btn btn-primary" role="button" href="{{ path('app_document_index') }}"><i class="bi bi-arrow-return-left m-1"></i>Back to list</a>
     {{ include('document/_form.html.twig') }}
-
-    <a href="{{ path('app_document_index') }}">back to list</a>
 {% endblock %}

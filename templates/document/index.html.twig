@@ -3,7 +3,12 @@
 {% block title %}Document index{% endblock %}
 
 {% block body %}
-    <h1>Document index</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Document index</h1>
+        <div>
+            <a class="btn btn-primary" role="button" href="{{ path('app_document_new') }}"><i class="bi bi-plus m-1"></i>New</a>
+        </div>
+    </div>
 
     <table class="table">
         <thead>
@@ -23,8 +28,8 @@
                 <td>{{ document.addDate ? document.addDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ document.baseName }}</td>
                 <td>
-                    <a href="{{ path('app_document_show', {'id': document.id}) }}">show</a>
-                    <a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>
+                    <a class="btn btn-info" role="button" href="{{ path('app_document_show', {'id': document.id}) }}"><i class="bi bi-info-circle m-1"></i>Show</a>
+                    <a class="btn btn-primary" role="button" href="{{ path('app_document_edit', {'id': document.id}) }}"><i class="bi bi-pencil-square m-1"></i>Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +39,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_document_new') }}">Create new</a>
 {% endblock %}
