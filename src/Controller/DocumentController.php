@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Document;
 use App\Form\DocumentType;
 use App\Repository\DocumentRepository;
+use App\Service\XMLManagerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
@@ -27,7 +28,7 @@ class DocumentController extends AbstractController
 
     #[Route('/new', name: 'app_document_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger,
-                        Filesystem $filesystem): Response
+                        Filesystem $filesystem, XMLManagerService $xmlManagerService): Response
     {
         $document = new Document();
         $form = $this->createForm(DocumentType::class, $document);
@@ -61,6 +62,9 @@ class DocumentController extends AbstractController
             $document->setAddDate(new \DateTime());
             $entityManager->persist($document);
             $entityManager->flush();
+
+            $xmlManagerService->initialize($document);
+            $arrayNodes =  $xmlManagerService->firstReadXMLDocument();
 
             return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
         }
