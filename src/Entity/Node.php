@@ -23,6 +23,9 @@ class Node
     #[ORM\JoinColumn(nullable: false)]
     private ?Document $document = null;
 
+    #[ORM\Column(length: 1000, nullable: true)]
+    private ?string $value = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Node
     public function setDocument(?Document $document): static
     {
         $this->document = $document;
+
+        return $this;
+    }
+
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    public function setValue(?string $value): static
+    {
+        $this->value = $value;
 
         return $this;
     }
