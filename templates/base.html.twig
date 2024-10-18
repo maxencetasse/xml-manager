@@ -20,43 +20,58 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarsExample03">
                         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">{{ 'menu.link.home'|trans }}</a>
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">
+                                    <i class="bi bi-house m-1"></i>{{ 'menu.link.home'|trans }}
+                                </a>
                             </li>
                             {% if is_granted('ROLE_USER') %}
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ path('app_document_index') }}">{{ 'menu.link.document'|trans }}</a>
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_document_index') }}">
+                                        <i class="bi bi-file-earmark-text m-1"></i>{{ 'menu.link.document'|trans }}
+                                    </a>
                                 </li>
                             {% endif %}
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ path('app_user_index') }}">{{ 'menu.link.user'|trans }}</a>
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_user_index') }}">
+                                        <i class="bi bi-person m-1"></i>
+                                        {{ 'menu.link.user'|trans }}
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ path('app_role_index') }}">{{ 'menu.link.role'|trans }}</a>
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_role_index') }}">
+                                        <i class="bi bi-people m-1"></i>{{ 'menu.link.role'|trans }}
+                                    </a>
                                 </li>
                             {% endif %}
                         </ul>
                     </div>
-
-
                     <div class="d-flex flex-row">
                         {% if is_granted('ROLE_USER') %}
-                            <div>
+                            <div class="justify-content-center">
                                 <p class="me-3 fw-bold">{{ app.user.email }}</p>
                             </div>
                             <a class="nav-link" href="{{ path('app_logout') }}">
-                                <button type="button" class="btn btn-primary">{{ 'menu.connection.button.logout'|trans }}</button>
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-person-lock m-1"></i>
+                                    {{ 'menu.connection.button.logout'|trans }}
+                                </button>
                             </a>
                         {% else %}
                             <a class="nav-link" href="{{ path('app_login') }}">
-                                <button type="button" class="btn btn-outline-primary me-2">{{ 'menu.connection.button.login'|trans }}</button>
+                                <button type="button" class="btn btn-outline-primary me-2">
+                                    <i class="bi bi-person m-1"></i>
+                                    {{ 'menu.connection.button.login'|trans }}
+                                </button>
                             </a>
                             <a class="nav-link" href="{{ path('app_register') }}">
-                                <button type="button" class="btn btn-primary">{{ 'menu.connection.button.signup'|trans }}</button>
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-file-text m-1"></i>
+                                    {{ 'menu.connection.button.signup'|trans }}
+                                </button>
                             </a>
                         {% endif %}
                     </div>

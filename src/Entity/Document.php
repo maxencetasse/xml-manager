@@ -29,6 +29,17 @@ class Document
     #[ORM\JoinColumn()]
     private ?User $user = null;
 
+    /**
+     * @var Collection<int, Node>
+     */
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: Node::class, orphanRemoval: true)]
+    private Collection $nodes;
+
+    public function __construct()
+    {
+        $this->nodes = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,6 +89,36 @@ class Document
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Node>
+     */
+    public function getNodes(): Collection
+    {
+        return $this->nodes;
+    }
+
+    public function addNode(Node $node): static
+    {
+        if (!$this->nodes->contains($node)) {
+            $this->nodes->add($node);
+            $node->setDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNode(Node $node): static
+    {
+        if ($this->nodes->removeElement($node)) {
+            // set the owning side to null (unless already changed)
+            if ($node->getDocument() === $this) {
+                $node->setDocument(null);
+            }
+        }
 
         return $this;
     }
