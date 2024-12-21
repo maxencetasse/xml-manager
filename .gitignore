@@ -23,3 +23,5 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/commandlinetools/Symfony_21_12_2024_10_28.xml
