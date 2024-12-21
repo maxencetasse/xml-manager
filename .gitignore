@@ -25,3 +25,11 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/commandlinetools/Symfony_21_12_2024_10_28.xml
+
+
+/.iml
+/.idea/dataSources.local.xml
+/.idea/dataSources.xml
+/.idea/dataSources/a6a48cb9-3fda-4fc1-a945-b00b34b81c7b/storage_v2/_src_/schema/xml-manager.97u1zw.meta
+/.idea/dataSources/a6a48cb9-3fda-4fc1-a945-b00b34b81c7b.xml
+/.idea/inspectionProfiles/Project_Default.xml

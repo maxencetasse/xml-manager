@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Node{% endblock %}
+
+{% block body %}
+    <h1>Create new Node</h1>
+
+    {{ include('node/_form.html.twig') }}
+
+    <a href="{{ path('app_node_index') }}">back to list</a>
+{% endblock %}
