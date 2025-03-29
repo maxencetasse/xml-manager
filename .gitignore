@@ -31,3 +31,4 @@ yarn-error.log
 /.idea/dataSources/a6a48cb9-3fda-4fc1-a945-b00b34b81c7b.xml
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/dataSources/a6a48cb9-3fda-4fc1-a945-b00b34b81c7b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+*.idea
